@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Mis Tareas - Gestor de Tareas{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Mis Tareas</h2>
+    
+    {% if tareas %}
+        <div class="list-group">
+            {% for tarea in tareas %}
+                <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    <a href="{% url 'tarea_detail' tarea.id %}" class="text-decoration-none text-dark flex-grow-1">
+                        <h5 class="mb-1 {% if tarea.completada %}text-decoration-line-through{% endif %}">{{ tarea.titulo }}</h5>
+                    </a>
+                    <div>
+                        <a href="{% url 'completar_tarea' tarea.id %}" class="btn btn-success btn-sm me-2 {% if tarea.completada %}disabled{% endif %}">Completar</a>
+                        <a href="{% url 'eliminar_tarea' tarea.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info" role="alert">
+            No tienes tareas pendientes. ¡Añade una nueva!
+        </div>
+    {% endif %}
+
+    <a href="{% url 'crear_tarea' %}" class="btn btn-primary mt-4">Añadir Nueva Tarea</a>
+</div>
+{% endblock %}

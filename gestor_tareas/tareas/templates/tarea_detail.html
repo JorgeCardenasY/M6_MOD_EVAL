@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ tarea.titulo }} - Gestor de Tareas{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    {% if tarea %}
+        <div class="card">
+            <div class="card-header">
+                <h2>{{ tarea.titulo }}</h2>
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ tarea.descripcion }}</p>
+            </div>
+            <div class="card-footer text-muted">
+                <p><b>Creador:</b> {{ tarea.usuario.username }}</p>
+                <p><b>Creada en:</b> {{ tarea.creada_en }}</p>
+                <p><b>Completada:</b> {% if tarea.completada %}Sí{% else %}No{% endif %}</p>
+            </div>
+        </div>
+        <a href="{% url 'lista_tareas' %}" class="btn btn-secondary mt-3">Volver a la lista</a>
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            La tarea que buscas no existe o no tienes permiso para verla.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

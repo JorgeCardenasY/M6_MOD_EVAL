@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card text-center">
+                <div class="card-header">
+                    Sesión Cerrada
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Has cerrado sesión exitosamente.</h5>
+                    <p class="card-text">Gracias por utilizar el Gestor de Tareas.</p>
+                    <a href="{% url 'iniciar_sesion' %}" class="btn btn-primary">Volver a Iniciar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
